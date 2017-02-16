@@ -44,16 +44,31 @@ columns, so the output looks better.
 import random
 import sys
 
-
+"""Returns mimic dict mapping each word to list of words which follow it."""
 def mimic_dict(filename):
-  """Returns mimic dict mapping each word to list of words which follow it."""
-  # +++your code here+++
-  return
+
+  with open(filename, 'r') as file:#aqui abrimos o arquivo e fechamos
+    data = file.read()
+  
+  lista = data.split()#tiramos todos os espaços do texto e colocamos cada palavra em uma lista
+    
+  d = dict()
+  
+  i = 0
+  for word in lista:
+  	d[word] = lista[i+1:]
+  	i+=1
+
+  #for word, n in d.items():
+  #  print("\n----------------------------------------------------------\n") 
+  #  print("{0} : {1}".format(word, n))  
+
+  return d
 
 
 def print_mimic(mimic_dict, word):
   """Given mimic dict and start word, prints 200 random words."""
-  # +++your code here+++
+  
   return
 
 

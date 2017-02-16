@@ -51,6 +51,8 @@ def print_words(filename):
 
     d = file_dict(filename)
     
+
+    #para cada chave/valor no dicionario ordenado pelas chaves
     for word, n in sorted(d.items()): 
     	print("{0} : {1}".format(word, n))
 
@@ -59,31 +61,36 @@ def print_words(filename):
 def print_top(filename):
 
 	d = file_dict(filename)
-
+    
+    #Criamos uma nova lista de tuplas que armazena cada chave/valor do dicionario
+    #ordenado pelos valores decrescentes
 	sorted_x = sorted(d.items(), key=operator.itemgetter(1), reverse=True)
-
+    
+    #para as primeiras 20 tuplas na lista 
 	for w in sorted_x[:20]:
 		print(w[0], w[1])
 
 
-## abre o arquivo texto e cria um dicionario contendo a palavra e o numero
-## de vezes que ela aparece
+## abre o arquivo texto e cria um dicionario contendo as palavras e o numero
+## de vezes que cada uma aparece
 def file_dict(filename):
-    with open(filename, 'r') as file:
+    with open(filename, 'r') as file:#aqui abrimos o arquivo e fechamos
     	data = file.read()
 
-    data = data.lower()
+    data = data.lower()#convertemos todos os caracteres para lowercase
 
-    d = dict()
-    lista = data.split()
+    d = dict()#inicializamos um novo dicionario
 
-    for palavra in sorted(lista):
-    	if palavra not in d:
-    	    d[palavra] = 1
-    	else:
-    	    d[palavra] = d[palavra]+1
+    lista = data.split()#tiramos todos os espaços do texto e colocamos cada palavra em uma lista
     
-    return d
+    #para cada palavra na lista ordenada
+    for palavra in sorted(lista):
+    	if palavra not in d:#se a palavra nao esta no dicionario ainda
+    	    d[palavra] = 1#criamos um novo registro 
+    	else:
+    	    d[palavra] = d[palavra]+1#se ja esta, adicionamos uma unidade na contagem
+    
+    return d #retornamos o dicionario
 
 
 # This basic command line argument parsing code is provided and
